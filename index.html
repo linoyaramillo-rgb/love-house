@@ -2,423 +2,836 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#000000">
-  <title>Love House 👑</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080808">
+  <title>Love House ♛</title>
 
   <style>
-    * {
-      box-sizing: border-box;
+    :root {
+      --black: #080808;
+      --gold: #f4d35e;
+      --text: #202020;
+      --muted: #777;
+      --line: #ededed;
+      --page: #fff;
+      --soft: #f7f7f7;
     }
+
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #fff;
-      color: #222;
+      background: var(--page);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
     }
 
-    header {
-      background: #000;
-      color: #fff;
-      padding: 20px 5%;
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    a { color: inherit; text-decoration: none; }
+
+    .site-header {
+      background: var(--black);
+      color: white;
+      padding: 0 5%;
     }
 
-    .topbar {
+    .header-inner {
+      max-width: 1440px;
+      min-height: 78px;
+      margin: auto;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 16px;
+      gap: 30px;
     }
 
-    .logo {
-      font-size: 27px;
-      font-weight: bold;
-      color: #fff;
-      text-decoration: none;
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      flex-shrink: 0;
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: -.6px;
+      color: white;
     }
 
-    .logo span {
-      color: #e6c36a;
+    .crown-badge {
+      width: 39px;
+      height: 39px;
+      border-radius: 10px;
+      background: var(--gold);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .crown-badge svg {
+      width: 27px;
+      height: 27px;
+      display: block;
+    }
+
+    .header-search {
+      flex: 1;
+      max-width: 530px;
+      margin-inline: auto;
+      position: relative;
+    }
+
+    .header-search input {
+      width: 100%;
+      height: 43px;
+      border: 1px solid #353535;
+      border-radius: 8px;
+      background: #191919;
+      color: white;
+      padding: 0 43px 0 14px;
+      outline: none;
+    }
+
+    .header-search input:focus {
+      border-color: var(--gold);
+    }
+
+    .search-icon {
+      position: absolute;
+      right: 14px;
+      top: 11px;
+      font-size: 18px;
+      color: #aaa;
+      pointer-events: none;
     }
 
     .header-actions {
       display: flex;
       align-items: center;
       gap: 10px;
-      flex-wrap: wrap;
+      flex-shrink: 0;
     }
 
-    button, input {
-      font: inherit;
-    }
-
-    button {
-      cursor: pointer;
-    }
-
-    .header-button {
-      background: #fff;
-      color: #000;
-      border: 0;
+    .button {
+      min-height: 40px;
+      padding: 0 15px;
       border-radius: 7px;
-      padding: 10px 14px;
+      border: 1px solid transparent;
+      font-weight: 700;
     }
 
-    .profile {
-      text-align: center;
-      padding: 42px 20px 28px;
+    .button-light {
+      background: white;
+      color: #111;
     }
 
-    .avatar {
-      width: 105px;
-      height: 105px;
-      border-radius: 50%;
-      background: #eee;
-      border: 3px solid #e6c36a;
+    .button-outline {
+      background: transparent;
+      border-color: #555;
+      color: white;
+    }
+
+    .button-gold {
+      background: var(--gold);
+      color: #151515;
+    }
+
+    .page {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 28px 30px 65px;
+    }
+
+    .breadcrumbs {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 25px;
+    }
+
+    .profile-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 260px;
+      gap: 35px;
+      align-items: start;
+    }
+
+    .profile-main {
+      min-width: 0;
+    }
+
+    .profile-heading {
       display: flex;
       align-items: center;
-      justify-content: center;
-      margin: 0 auto 15px;
-      font-size: 42px;
+      gap: 23px;
+      padding-bottom: 25px;
+      border-bottom: 1px solid var(--line);
     }
 
-    .profile h1 {
-      margin: 10px 0;
-      font-size: 28px;
-    }
-
-    .profile p {
-      color: #777;
-      margin: 8px 0;
-    }
-
-    .search-area {
-      max-width: 650px;
-      margin: 20px auto 35px;
-      padding: 0 20px;
-    }
-
-    .search-box {
-      display: flex;
-      border: 1px solid #ddd;
-      border-radius: 10px;
+    .profile-photo {
+      width: 142px;
+      height: 142px;
+      border-radius: 13px;
+      background: #eee;
+      border: 1px solid #e6e6e6;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
       overflow: hidden;
     }
 
-    .search-box input {
-      flex: 1;
+    .profile-photo svg {
+      width: 78px;
+      height: 78px;
+    }
+
+    .profile-info {
       min-width: 0;
-      padding: 14px;
-      border: 0;
-      outline: none;
-      background: #fff;
+      flex: 1;
     }
 
-    .search-box button {
-      border: 0;
-      padding: 0 20px;
-      background: #000;
-      color: #fff;
+    .profile-info h1 {
+      margin: 0 0 10px;
+      font-size: clamp(25px, 3vw, 35px);
+      color: #111;
+      overflow-wrap: anywhere;
     }
 
-    main {
-      max-width: 1100px;
-      margin: auto;
-      padding: 0 20px 50px;
+    .profile-tagline {
+      color: var(--muted);
+      line-height: 1.8;
+      margin: 0 0 15px;
+      font-size: 14px;
+    }
+
+    .profile-stats {
+      display: flex;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .stat strong {
+      font-size: 18px;
+      color: #111;
+    }
+
+    .stat span {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .profile-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 22px;
+    }
+
+    .profile-actions .button {
+      border-color: #ddd;
+      background: white;
+      color: #222;
+    }
+
+    .profile-actions .button.primary {
+      background: #111;
+      color: white;
+      border-color: #111;
+    }
+
+    .sidebar {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 22px;
+      background: white;
+    }
+
+    .sidebar-brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-size: 15px;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    .sidebar-brand .crown-badge {
+      width: 34px;
+      height: 34px;
+    }
+
+    .sidebar-brand .crown-badge svg {
+      width: 23px;
+      height: 23px;
+    }
+
+    .sidebar h2 {
+      font-size: 17px;
+      margin: 0 0 12px;
+    }
+
+    .sidebar p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.9;
+      margin: 0 0 18px;
+    }
+
+    .sidebar .button {
+      width: 100%;
+    }
+
+    .section-divider {
+      height: 1px;
+      background: var(--line);
+      margin: 28px 0;
+    }
+
+    .gallery-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .gallery-heading h2 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .gallery-heading p {
+      margin: 7px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .gallery-tools {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-button {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 7px;
+      padding: 9px 12px;
+      color: #333;
     }
 
     .tabs {
       display: flex;
-      justify-content: center;
-      gap: 12px;
-      border-bottom: 1px solid #eee;
-      margin-bottom: 25px;
+      align-items: center;
+      gap: 27px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 22px;
     }
 
     .tab {
-      background: transparent;
+      position: relative;
       border: 0;
-      padding: 15px 22px;
+      background: transparent;
       color: #777;
-      border-bottom: 3px solid transparent;
+      padding: 14px 1px;
+      font-weight: 700;
     }
 
     .tab.active {
-      color: #000;
-      border-bottom-color: #000;
-      font-weight: bold;
+      color: #111;
     }
 
-    .gallery {
+    .tab.active::after {
+      content: "";
+      height: 3px;
+      position: absolute;
+      bottom: -1px;
+      right: 0;
+      left: 0;
+      background: #111;
+      border-radius: 4px;
+    }
+
+    .media-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 18px;
     }
 
     .media-card {
+      min-width: 0;
       border: 1px solid #eee;
-      border-radius: 12px;
+      border-radius: 10px;
       overflow: hidden;
-      background: #fff;
+      background: white;
+      transition: border-color .2s;
     }
 
-    .media-preview {
-      min-height: 150px;
+    .media-card:hover {
+      border-color: #cfcfcf;
+    }
+
+    .media-placeholder {
       aspect-ratio: 4 / 3;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: #f4f4f4;
-      color: #777;
-      font-size: 42px;
+      display: grid;
+      place-items: center;
+      background: var(--soft);
+      color: #aaa;
+      font-size: 34px;
     }
 
-    .media-preview img,
-    .media-preview video {
-      width: 100%;
-      height: 100%;
-      aspect-ratio: 4 / 3;
-      object-fit: cover;
+    .media-placeholder svg {
+      width: 47px;
+      height: 47px;
+      opacity: .65;
     }
 
-    .media-info {
-      padding: 14px;
+    .media-caption {
+      padding: 13px;
     }
 
-    .media-info h3 {
-      margin: 0 0 12px;
-      font-size: 16px;
+    .media-caption strong {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 10px;
     }
 
-    .like-button {
-      background: #fff;
-      border: 1px solid #ddd;
-      border-radius: 7px;
-      padding: 8px 12px;
-    }
-
-    .like-button.liked {
-      color: #d21f4b;
-      border-color: #d21f4b;
+    .media-caption small {
+      color: var(--muted);
+      font-size: 12px;
     }
 
     .empty-state {
       grid-column: 1 / -1;
       text-align: center;
-      padding: 45px 15px;
-      color: #777;
-      line-height: 1.8;
+      padding: 45px 20px;
+      border: 1px dashed #ddd;
+      border-radius: 10px;
+      color: var(--muted);
+      line-height: 1.9;
+    }
+
+    .empty-state .empty-icon {
+      font-size: 32px;
+      margin-bottom: 10px;
     }
 
     footer {
-      background: #000;
-      color: #aaa;
+      border-top: 1px solid var(--line);
+      padding: 24px 20px;
       text-align: center;
-      padding: 24px 15px;
-      font-size: 14px;
+      color: #777;
+      font-size: 13px;
     }
 
-    [hidden] {
-      display: none !important;
+    .footer-brand {
+      font-weight: 800;
+      color: #222;
     }
 
-    @media (max-width: 650px) {
-      header {
-        padding: 16px;
+    [hidden] { display: none !important; }
+
+    @media (max-width: 950px) {
+      .header-inner {
+        flex-wrap: wrap;
+        padding: 16px 0;
+        gap: 15px;
       }
 
-      .logo {
-        font-size: 23px;
+      .header-search {
+        order: 3;
+        max-width: none;
+        flex-basis: 100%;
       }
 
-      .gallery {
+      .profile-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        order: 2;
+      }
+
+      .media-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 620px) {
+      .site-header { padding: 0 16px; }
+
+      .header-inner { gap: 12px; }
+
+      .brand { font-size: 21px; }
+
+      .crown-badge {
+        width: 34px;
+        height: 34px;
+      }
+
+      .header-actions { margin-inline-start: auto; }
+
+      .header-actions .button {
+        min-height: 36px;
+        padding: 0 10px;
+        font-size: 12px;
+      }
+
+      .page { padding: 22px 16px 45px; }
+
+      .profile-heading {
+        align-items: flex-start;
+        gap: 14px;
+      }
+
+      .profile-photo {
+        width: 94px;
+        height: 94px;
+      }
+
+      .profile-photo svg {
+        width: 57px;
+        height: 57px;
+      }
+
+      .profile-info h1 { font-size: 24px; }
+
+      .profile-stats { gap: 14px; }
+
+      .stat strong { font-size: 16px; }
+
+      .profile-actions .button {
+        padding: 0 11px;
+        font-size: 13px;
+      }
+
+      .media-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 10px;
       }
 
-      .media-preview {
-        min-height: 110px;
-      }
+      .media-caption { padding: 10px; }
 
-      .tab {
-        padding: 13px 15px;
-      }
+      .gallery-heading h2 { font-size: 21px; }
+
+      .tabs { gap: 22px; }
     }
 
-    @media (max-width: 380px) {
-      .gallery {
-        grid-template-columns: 1fr;
-      }
+    @media (max-width: 360px) {
+      .media-grid { grid-template-columns: 1fr; }
+
+      .profile-heading { flex-direction: column; }
     }
   </style>
 </head>
 
 <body>
-
-  <header>
-    <div class="topbar">
-      <a class="logo" href="#" aria-label="Love House">
-        <span>♛</span> Love House
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#" aria-label="Love House">
+        <span class="crown-badge" aria-hidden="true">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 18 L21 29 L31 9 L42 29 L56 17 L51 46 L13 46 Z"
+              fill="#111111" stroke="#111111" stroke-width="3"
+              stroke-linejoin="round"/>
+            <path d="M14 51 H50" stroke="#111111" stroke-width="5"
+              stroke-linecap="round"/>
+            <circle cx="8" cy="16" r="4" fill="#111111"/>
+            <circle cx="31" cy="8" r="4" fill="#111111"/>
+            <circle cx="57" cy="15" r="4" fill="#111111"/>
+          </svg>
+        </span>
+        <span>Love House</span>
       </a>
 
+      <div class="header-search">
+        <span class="search-icon" aria-hidden="true">⌕</span>
+        <input id="searchInput" type="search"
+          placeholder="ابحثي في المعرض..."
+          aria-label="البحث في المعرض">
+      </div>
+
       <div class="header-actions">
-        <button class="header-button" id="languageButton">
-          English
-        </button>
-        <button class="header-button" id="loginButton" data-i18n="login">
-          تسجيل الدخول
-        </button>
+        <button class="button button-outline" id="languageButton">English</button>
+        <button class="button button-light" id="loginButton">تسجيل الدخول</button>
       </div>
     </div>
   </header>
 
-  <section class="profile">
-    <div class="avatar" aria-label="صورة الملف الشخصي">👑</div>
-    <h1>Layan Yaramillo</h1>
-    <p data-i18n="welcome">أهلًا بكِ في عالمي الخاص</p>
-  </section>
-
-  <section class="search-area">
-    <div class="search-box">
-      <input
-        type="search"
-        id="searchInput"
-        data-placeholder="searchPlaceholder"
-        placeholder="ابحثي في المعرض..."
-        aria-label="البحث في المعرض"
-      >
-      <button id="searchButton" data-i18n="search">بحث</button>
+  <main class="page">
+    <div class="breadcrumbs" id="breadcrumbs">
+      الرئيسية　›　الملف الشخصي
     </div>
-  </section>
 
-  <main>
-    <nav class="tabs" aria-label="أقسام المعرض">
-      <button class="tab active" data-tab="photos" data-i18n="photos">
-        الصور
-      </button>
-      <button class="tab" data-tab="videos" data-i18n="videos">
-        الفيديوهات
-      </button>
-    </nav>
+    <div class="profile-layout">
+      <section class="profile-main">
+        <div class="profile-heading">
+          <div class="profile-photo" aria-label="مكان صورة الملف الشخصي">
+            <svg viewBox="0 0 100 100" role="img" aria-label="صورة مؤقتة">
+              <circle cx="50" cy="34" r="20" fill="#c9c9c9"/>
+              <path d="M13 94 C15 65 31 57 50 57 C69 57 85 65 87 94"
+                fill="#c9c9c9"/>
+            </svg>
+          </div>
 
-    <section class="gallery" id="gallery" aria-live="polite">
-      <div class="empty-state" data-i18n="empty">
-        المعرض جاهز لاستقبال الصور والفيديوهات قريبًا. ❤️
-      </div>
-    </section>
+          <div class="profile-info">
+            <h1>Layan Yaramillo</h1>
+            <p class="profile-tagline" id="tagline">
+              أهلًا بكِ في عالمي الخاص ❤️
+            </p>
+
+            <div class="profile-stats">
+              <div class="stat">
+                <strong>0</strong>
+                <span data-ar="الصور" data-en="Photos">الصور</span>
+              </div>
+              <div class="stat">
+                <strong>0</strong>
+                <span data-ar="الفيديوهات" data-en="Videos">الفيديوهات</span>
+              </div>
+              <div class="stat">
+                <strong>0</strong>
+                <span data-ar="الإعجابات" data-en="Likes">الإعجابات</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="profile-actions">
+          <button class="button primary" id="followButton">♡ متابعة</button>
+          <button class="button" id="shareButton">↗ مشاركة</button>
+          <button class="button" id="messageButton">✉ رسالة</button>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <section aria-labelledby="galleryTitle">
+          <div class="gallery-heading">
+            <div>
+              <h2 id="galleryTitle">معرض Layan</h2>
+              <p id="gallerySubtitle">الصور والفيديوهات المنشورة</p>
+            </div>
+
+            <div class="gallery-tools">
+              <button class="filter-button" id="sortButton">الأحدث أولًا</button>
+            </div>
+          </div>
+
+          <nav class="tabs" aria-label="أقسام المعرض">
+            <button class="tab active" data-tab="photos">▦ الصور</button>
+            <button class="tab" data-tab="videos">▷ الفيديوهات</button>
+          </nav>
+
+          <div class="media-grid" id="mediaGrid">
+            <div class="empty-state">
+              <div class="empty-icon">♡</div>
+              <strong>مرحبًا بكِ في Love House</strong>
+              <div>ستظهر الصور والفيديوهات هنا عندما نضيفها إلى المعرض.</div>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <span class="crown-badge" aria-hidden="true">
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 18 L21 29 L31 9 L42 29 L56 17 L51 46 L13 46 Z"
+                fill="#111111" stroke="#111111" stroke-width="3"
+                stroke-linejoin="round"/>
+              <path d="M14 51 H50" stroke="#111111" stroke-width="5"
+                stroke-linecap="round"/>
+              <circle cx="8" cy="16" r="4" fill="#111111"/>
+              <circle cx="31" cy="8" r="4" fill="#111111"/>
+              <circle cx="57" cy="15" r="4" fill="#111111"/>
+            </svg>
+          </span>
+          <span>Love House</span>
+        </div>
+
+        <h2 id="sidebarTitle">مرحبًا بكِ في عالمي</h2>
+        <p id="sidebarText">
+          مساحة خاصة لمشاركة الصور والفيديوهات والتواصل مع المجتمع.
+        </p>
+        <button class="button button-gold" id="sidebarButton">
+          اكتشفي المعرض
+        </button>
+      </aside>
+    </div>
   </main>
 
   <footer>
-    <span>♛ Love House</span>
-    <span> · </span>
-    <span data-i18n="footer">مساحة تجمعنا بالمحبة</span>
+    <span class="footer-brand">♛ Love House</span>
+    <span id="footerText"> · مساحة تجمعنا بالمحبة</span>
   </footer>
 
   <script>
+    let language = "ar";
+    let activeTab = "photos";
+    let following = false;
+
     const translations = {
       ar: {
+        search: "ابحثي في المعرض...",
         login: "تسجيل الدخول",
-        welcome: "أهلًا بكِ في عالمي الخاص",
-        search: "بحث",
-        searchPlaceholder: "ابحثي في المعرض...",
-        photos: "الصور",
-        videos: "الفيديوهات",
-        empty: "المعرض جاهز لاستقبال الصور والفيديوهات قريبًا. ❤️",
-        footer: "مساحة تجمعنا بالمحبة",
-        photo: "صورة",
-        video: "فيديو",
-        noResults: "لا توجد نتائج مطابقة لبحثكِ.",
-        loginNotice: "سيتم تجهيز تسجيل الدخول الحقيقي في مرحلة لاحقة.",
-        likes: "إعجاب",
-        untitled: "من المعرض"
+        breadcrumbs: "الرئيسية　›　الملف الشخصي",
+        tagline: "أهلًا بكِ في عالمي الخاص ❤️",
+        photos: "▦ الصور",
+        videos: "▷ الفيديوهات",
+        galleryTitle: "معرض Layan",
+        subtitle: "الصور والفيديوهات المنشورة",
+        sort: "الأحدث أولًا",
+        follow: "♡ متابعة",
+        following: "✓ تتابعين",
+        share: "↗ مشاركة",
+        message: "✉ رسالة",
+        sidebarTitle: "مرحبًا بكِ في عالمي",
+        sidebarText: "مساحة خاصة لمشاركة الصور والفيديوهات والتواصل مع المجتمع.",
+        sidebarButton: "اكتشفي المعرض",
+        emptyTitle: "مرحبًا بكِ في Love House",
+        emptyText: "ستظهر الصور والفيديوهات هنا عندما نضيفها إلى المعرض.",
+        noResults: "لم نعثر على نتائج مطابقة.",
+        footer: " · مساحة تجمعنا بالمحبة",
+        alertLogin: "سنجهّز تسجيل الدخول الحقيقي في مرحلة لاحقة.",
+        alertMessage: "سنجهّز الرسائل والدردشة في مرحلة لاحقة.",
+        alertShare: "يمكنكِ نسخ رابط الموقع من شريط العنوان ومشاركته."
       },
       en: {
+        search: "Search the gallery...",
         login: "Sign in",
-        welcome: "Welcome to my world",
-        search: "Search",
-        searchPlaceholder: "Search the gallery...",
-        photos: "Photos",
-        videos: "Videos",
-        empty: "The gallery will welcome photos and videos soon. ❤️",
-        footer: "A place to connect through love",
-        photo: "Photo",
-        video: "Video",
+        breadcrumbs: "Home　›　Profile",
+        tagline: "Welcome to my world ❤️",
+        photos: "▦ Photos",
+        videos: "▷ Videos",
+        galleryTitle: "Layan's Gallery",
+        subtitle: "Published photos and videos",
+        sort: "Newest first",
+        follow: "♡ Follow",
+        following: "✓ Following",
+        share: "↗ Share",
+        message: "✉ Message",
+        sidebarTitle: "Welcome to my world",
+        sidebarText: "A personal space for sharing photos, videos and connecting with the community.",
+        sidebarButton: "Explore gallery",
+        emptyTitle: "Welcome to Love House",
+        emptyText: "Photos and videos will appear here when added to the gallery.",
         noResults: "No matching results found.",
-        loginNotice: "Real sign-in will be set up in a later stage.",
-        likes: "Like",
-        untitled: "From the gallery"
+        footer: " · A place to connect through love",
+        alertLogin: "Real sign-in will be added in a later stage.",
+        alertMessage: "Messaging and chat will be added in a later stage.",
+        alertShare: "You can copy the website address from the browser and share it."
       }
     };
 
-    let language = "ar";
-    let activeTab = "photos";
+    const $ = id => document.getElementById(id);
 
-    const gallery = document.getElementById("gallery");
-    const searchInput = document.getElementById("searchInput");
-
-    function renderGallery() {
-      const query = searchInput.value.trim().toLowerCase();
-      gallery.innerHTML = "";
-
-      const empty = document.createElement("div");
-      empty.className = "empty-state";
-      empty.textContent = query
-        ? translations[language].noResults
-        : translations[language].empty;
-
-      gallery.appendChild(empty);
-    }
-
-    function setLanguage(nextLanguage) {
-      language = nextLanguage;
+    function setLanguage(next) {
+      language = next;
+      const t = translations[language];
 
       document.documentElement.lang = language;
       document.documentElement.dir = language === "ar" ? "rtl" : "ltr";
 
-      document.querySelectorAll("[data-i18n]").forEach(element => {
-        const key = element.dataset.i18n;
-        element.textContent = translations[language][key];
+      $("searchInput").placeholder = t.search;
+      $("loginButton").textContent = t.login;
+      $("breadcrumbs").textContent = t.breadcrumbs;
+      $("tagline").textContent = t.tagline;
+      $("galleryTitle").textContent = t.galleryTitle;
+      $("gallerySubtitle").textContent = t.subtitle;
+      $("sortButton").textContent = t.sort;
+      $("followButton").textContent = following ? t.following : t.follow;
+      $("shareButton").textContent = t.share;
+      $("messageButton").textContent = t.message;
+      $("sidebarTitle").textContent = t.sidebarTitle;
+      $("sidebarText").textContent = t.sidebarText;
+      $("sidebarButton").textContent = t.sidebarButton;
+      $("footerText").textContent = t.footer;
+      $("languageButton").textContent = language === "ar" ? "English" : "العربية";
+
+      document.querySelectorAll("[data-ar][data-en]").forEach(el => {
+        el.textContent = el.dataset[language];
       });
 
-      document.querySelectorAll("[data-placeholder]").forEach(element => {
-        const key = element.dataset.placeholder;
-        element.placeholder = translations[language][key];
+      document.querySelectorAll("[data-tab]").forEach(button => {
+        const key = button.dataset.tab;
+        button.textContent = t[key];
       });
-
-      document.getElementById("languageButton").textContent =
-        language === "ar" ? "English" : "العربية";
 
       renderGallery();
     }
 
-    document.getElementById("languageButton").addEventListener("click", () => {
+    function renderGallery() {
+      const grid = $("mediaGrid");
+      const query = $("searchInput").value.trim();
+      grid.innerHTML = "";
+
+      const empty = document.createElement("div");
+      empty.className = "empty-state";
+
+      if (query) {
+        empty.textContent = translations[language].noResults;
+      } else {
+        const icon = document.createElement("div");
+        icon.className = "empty-icon";
+        icon.textContent = "♡";
+
+        const title = document.createElement("strong");
+        title.textContent = translations[language].emptyTitle;
+
+        const description = document.createElement("div");
+        description.textContent = translations[language].emptyText;
+
+        empty.append(icon, title, description);
+      }
+
+      grid.appendChild(empty);
+    }
+
+    $("languageButton").addEventListener("click", () => {
       setLanguage(language === "ar" ? "en" : "ar");
     });
 
-    document.getElementById("loginButton").addEventListener("click", () => {
-      alert(translations[language].loginNotice);
+    $("loginButton").addEventListener("click", () => {
+      alert(translations[language].alertLogin);
     });
 
-    document.getElementById("searchButton").addEventListener("click", renderGallery);
+    $("messageButton").addEventListener("click", () => {
+      alert(translations[language].alertMessage);
+    });
 
-    searchInput.addEventListener("input", renderGallery);
+    $("shareButton").addEventListener("click", () => {
+      alert(translations[language].alertShare);
+    });
 
-    document.querySelectorAll(".tab").forEach(button => {
+    $("followButton").addEventListener("click", () => {
+      following = !following;
+      $("followButton").textContent = following
+        ? translations[language].following
+        : translations[language].follow;
+    });
+
+    $("sidebarButton").addEventListener("click", () => {
+      $("galleryTitle").scrollIntoView({ behavior: "smooth" });
+    });
+
+    $("searchInput").addEventListener("input", renderGallery);
+
+    document.querySelectorAll("[data-tab]").forEach(button => {
       button.addEventListener("click", () => {
         activeTab = button.dataset.tab;
 
-        document.querySelectorAll(".tab").forEach(tab => {
+        document.querySelectorAll("[data-tab]").forEach(tab => {
           tab.classList.toggle("active", tab === button);
         });
 
         renderGallery();
       });
     });
-
-    renderGallery();
   </script>
-
 </body>
 </html>
