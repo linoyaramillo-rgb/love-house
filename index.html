@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -55,26 +56,28 @@
       letter-spacing: -.6px;
       color: white;
     }
-.brand-house {
-  color: #ffffff !important;
-  display: inline !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-}
 
-    .brand-house {
-      color: #fff;
+    /* عنوان الصفحة الرئيس */
+    .brand .brand-love {
+      color: var(--gold) !important;
+    }
+
+    .brand .brand-house {
+      color: #ffffff !important;
+      display: inline !important;
+      visibility: visible !important;
+      opacity: 1 !important;
     }
 
     .crown-badge {
-  width: 60px;
-  height: 60px;
-  border-radius: 0;
-  background: transparent;
-  display: grid;
-  place-items: center;
-  flex-shrink: 0;
-}
+      width: 60px;
+      height: 60px;
+      border-radius: 0;
+      background: transparent;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
 
     .crown-badge img {
       width: 100%;
@@ -277,14 +280,17 @@
     .sidebar-brand .crown-badge img {
       width: 100%;
       height: 100%;
-    }.sidebar-brand .brand-house {
-  display: inline !important;
-  color: #ffffff !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  font-size: inherit !important;
-  position: static !important;
-}
+    }
+
+    /* كلمتا القائمة الجانبية باللون الأسود */
+    .sidebar-brand .brand-love,
+    .sidebar-brand .brand-house {
+      color: #000000 !important;
+      display: inline !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+
     .sidebar h2 {
       font-size: 17px;
       margin: 0 0 12px;
@@ -568,7 +574,7 @@
             alt=""
           >
         </span>
-        <span><span style="color: black !important;">Love</span> <span style="color: black !important; display: inline !important; visibility: visible !important; opacity: 1 !important;">House</span></span>
+        <span><span class="brand-love">Love</span> <span class="brand-house">House</span></span>
       </a>
 
       <div class="header-search">
@@ -851,3 +857,4 @@
   </script>
 </body>
 </html>
+```
