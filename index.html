@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#000000">
+  <title>Love House 👑</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fff;
+      color: #222;
+    }
+
+    header {
+      background: #000;
+      color: #fff;
+      padding: 20px 5%;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .logo {
+      font-size: 27px;
+      font-weight: bold;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: #e6c36a;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    button, input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .header-button {
+      background: #fff;
+      color: #000;
+      border: 0;
+      border-radius: 7px;
+      padding: 10px 14px;
+    }
+
+    .profile {
+      text-align: center;
+      padding: 42px 20px 28px;
+    }
+
+    .avatar {
+      width: 105px;
+      height: 105px;
+      border-radius: 50%;
+      background: #eee;
+      border: 3px solid #e6c36a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 15px;
+      font-size: 42px;
+    }
+
+    .profile h1 {
+      margin: 10px 0;
+      font-size: 28px;
+    }
+
+    .profile p {
+      color: #777;
+      margin: 8px 0;
+    }
+
+    .search-area {
+      max-width: 650px;
+      margin: 20px auto 35px;
+      padding: 0 20px;
+    }
+
+    .search-box {
+      display: flex;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .search-box input {
+      flex: 1;
+      min-width: 0;
+      padding: 14px;
+      border: 0;
+      outline: none;
+      background: #fff;
+    }
+
+    .search-box button {
+      border: 0;
+      padding: 0 20px;
+      background: #000;
+      color: #fff;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: auto;
+      padding: 0 20px 50px;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      border-bottom: 1px solid #eee;
+      margin-bottom: 25px;
+    }
+
+    .tab {
+      background: transparent;
+      border: 0;
+      padding: 15px 22px;
+      color: #777;
+      border-bottom: 3px solid transparent;
+    }
+
+    .tab.active {
+      color: #000;
+      border-bottom-color: #000;
+      font-weight: bold;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .media-card {
+      border: 1px solid #eee;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .media-preview {
+      min-height: 150px;
+      aspect-ratio: 4 / 3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #f4f4f4;
+      color: #777;
+      font-size: 42px;
+    }
+
+    .media-preview img,
+    .media-preview video {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+    }
+
+    .media-info {
+      padding: 14px;
+    }
+
+    .media-info h3 {
+      margin: 0 0 12px;
+      font-size: 16px;
+    }
+
+    .like-button {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 7px;
+      padding: 8px 12px;
+    }
+
+    .like-button.liked {
+      color: #d21f4b;
+      border-color: #d21f4b;
+    }
+
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 45px 15px;
+      color: #777;
+      line-height: 1.8;
+    }
+
+    footer {
+      background: #000;
+      color: #aaa;
+      text-align: center;
+      padding: 24px 15px;
+      font-size: 14px;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    @media (max-width: 650px) {
+      header {
+        padding: 16px;
+      }
+
+      .logo {
+        font-size: 23px;
+      }
+
+      .gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .media-preview {
+        min-height: 110px;
+      }
+
+      .tab {
+        padding: 13px 15px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="topbar">
+      <a class="logo" href="#" aria-label="Love House">
+        <span>♛</span> Love House
+      </a>
+
+      <div class="header-actions">
+        <button class="header-button" id="languageButton">
+          English
+        </button>
+        <button class="header-button" id="loginButton" data-i18n="login">
+          تسجيل الدخول
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <section class="profile">
+    <div class="avatar" aria-label="صورة الملف الشخصي">👑</div>
+    <h1>Layan Yaramillo</h1>
+    <p data-i18n="welcome">أهلًا بكِ في عالمي الخاص</p>
+  </section>
+
+  <section class="search-area">
+    <div class="search-box">
+      <input
+        type="search"
+        id="searchInput"
+        data-placeholder="searchPlaceholder"
+        placeholder="ابحثي في المعرض..."
+        aria-label="البحث في المعرض"
+      >
+      <button id="searchButton" data-i18n="search">بحث</button>
+    </div>
+  </section>
+
+  <main>
+    <nav class="tabs" aria-label="أقسام المعرض">
+      <button class="tab active" data-tab="photos" data-i18n="photos">
+        الصور
+      </button>
+      <button class="tab" data-tab="videos" data-i18n="videos">
+        الفيديوهات
+      </button>
+    </nav>
+
+    <section class="gallery" id="gallery" aria-live="polite">
+      <div class="empty-state" data-i18n="empty">
+        المعرض جاهز لاستقبال الصور والفيديوهات قريبًا. ❤️
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>♛ Love House</span>
+    <span> · </span>
+    <span data-i18n="footer">مساحة تجمعنا بالمحبة</span>
+  </footer>
+
+  <script>
+    const translations = {
+      ar: {
+        login: "تسجيل الدخول",
+        welcome: "أهلًا بكِ في عالمي الخاص",
+        search: "بحث",
+        searchPlaceholder: "ابحثي في المعرض...",
+        photos: "الصور",
+        videos: "الفيديوهات",
+        empty: "المعرض جاهز لاستقبال الصور والفيديوهات قريبًا. ❤️",
+        footer: "مساحة تجمعنا بالمحبة",
+        photo: "صورة",
+        video: "فيديو",
+        noResults: "لا توجد نتائج مطابقة لبحثكِ.",
+        loginNotice: "سيتم تجهيز تسجيل الدخول الحقيقي في مرحلة لاحقة.",
+        likes: "إعجاب",
+        untitled: "من المعرض"
+      },
+      en: {
+        login: "Sign in",
+        welcome: "Welcome to my world",
+        search: "Search",
+        searchPlaceholder: "Search the gallery...",
+        photos: "Photos",
+        videos: "Videos",
+        empty: "The gallery will welcome photos and videos soon. ❤️",
+        footer: "A place to connect through love",
+        photo: "Photo",
+        video: "Video",
+        noResults: "No matching results found.",
+        loginNotice: "Real sign-in will be set up in a later stage.",
+        likes: "Like",
+        untitled: "From the gallery"
+      }
+    };
+
+    let language = "ar";
+    let activeTab = "photos";
+
+    const gallery = document.getElementById("gallery");
+    const searchInput = document.getElementById("searchInput");
+
+    function renderGallery() {
+      const query = searchInput.value.trim().toLowerCase();
+      gallery.innerHTML = "";
+
+      const empty = document.createElement("div");
+      empty.className = "empty-state";
+      empty.textContent = query
+        ? translations[language].noResults
+        : translations[language].empty;
+
+      gallery.appendChild(empty);
+    }
+
+    function setLanguage(nextLanguage) {
+      language = nextLanguage;
+
+      document.documentElement.lang = language;
+      document.documentElement.dir = language === "ar" ? "rtl" : "ltr";
+
+      document.querySelectorAll("[data-i18n]").forEach(element => {
+        const key = element.dataset.i18n;
+        element.textContent = translations[language][key];
+      });
+
+      document.querySelectorAll("[data-placeholder]").forEach(element => {
+        const key = element.dataset.placeholder;
+        element.placeholder = translations[language][key];
+      });
+
+      document.getElementById("languageButton").textContent =
+        language === "ar" ? "English" : "العربية";
+
+      renderGallery();
+    }
+
+    document.getElementById("languageButton").addEventListener("click", () => {
+      setLanguage(language === "ar" ? "en" : "ar");
+    });
+
+    document.getElementById("loginButton").addEventListener("click", () => {
+      alert(translations[language].loginNotice);
+    });
+
+    document.getElementById("searchButton").addEventListener("click", renderGallery);
+
+    searchInput.addEventListener("input", renderGallery);
+
+    document.querySelectorAll(".tab").forEach(button => {
+      button.addEventListener("click", () => {
+        activeTab = button.dataset.tab;
+
+        document.querySelectorAll(".tab").forEach(tab => {
+          tab.classList.toggle("active", tab === button);
+        });
+
+        renderGallery();
+      });
+    });
+
+    renderGallery();
+  </script>
+
+</body>
+</html>
